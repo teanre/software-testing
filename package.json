@@ -10,7 +10,13 @@
   "jest": {
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/.internal/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/.internal/"
+    ]
   },
   "author": "",
   "license": "MIT",
