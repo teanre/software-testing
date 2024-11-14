@@ -2,6 +2,8 @@
 
 ## Purpose of this repository
 
+[![Coverage Status](https://coveralls.io/repos/github/teanre/software-testing/badge.svg)](https://coveralls.io/github/teanre/software-testing)
+
 This is a project template for students participating in Software Testing course
 at Tampere University.
 
