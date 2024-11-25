@@ -87,10 +87,14 @@ test('should return an empty array when the input array is null or undefined', (
 });
 
 test('should handle non-array inputs gracefully', () => {
-  const iteratee = n => n * n;
+  const iteratee = value => value;
   expect(map(123, iteratee)).toEqual([]);
-  expect(map('string', iteratee)).toEqual([]);
   expect(map({ key: 'value' }, iteratee)).toEqual([]);
+});
+
+test('should handle string input gracefully', () => {
+  const iteratee = value => value;
+  expect(map('string', iteratee)).toEqual([]);
 });
 
 test('should handle iteratee that returns undefined', () => {
