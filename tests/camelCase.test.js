@@ -45,9 +45,28 @@ test('should handle empty strings', () => {
   expect(camelCase('')).toBe('');
 });
 
-test('should handle non-string inputs by converting them to strings', () => {
-  expect(camelCase(null)).toBe('');
-  expect(camelCase(undefined)).toBe('');
-  expect(camelCase(123)).toBe('123');
-  expect(camelCase({})).toBe('[objectObject]');
+// Non-string input handling
+test('should throw an error for null input', () => {
+  expect(() => camelCase(null)).toThrowError(new TypeError('Expected a string'));
+});
+
+test('should throw an error for undefined input', () => {
+  expect(() => camelCase(undefined)).toThrowError(new TypeError('Expected a string'));
+});
+
+test('should throw an error for number input', () => {
+  expect(() => camelCase(123)).toThrowError(new TypeError('Expected a string'));
+});
+
+test('should throw an error for object input', () => {
+  expect(() => camelCase({})).toThrowError(new TypeError('Expected a string'));
+});
+
+test('should throw an error for boolean input', () => {
+  expect(() => camelCase(true)).toThrowError(new TypeError('Expected a string'));
+  expect(() => camelCase(false)).toThrowError(new TypeError('Expected a string'));
+});
+
+test('should throw an error for array input', () => {
+  expect(() => camelCase([])).toThrowError(new TypeError('Expected a string'));
 });
