@@ -51,6 +51,10 @@ test('should round large numbers correctly', () => {
 // Non-numeric input handling
 test('should return NaN for string input', () => {
   expect(isNaN(ceil('a'))).toBe(true);
+  expect(isNaN(ceil('123abc'))).toBe(true);
+});
+
+test('should return NaN for an empty string input', () => {
   expect(isNaN(ceil(''))).toBe(true);
 });
 
