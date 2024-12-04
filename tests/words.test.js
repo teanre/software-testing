@@ -32,16 +32,17 @@ describe('words', () => {
     expect(words('hello 世界')).toEqual(['hello', '世界']);
   });
 
-  test('handles null or undefined input', () => {
-    expect(words(null)).toEqual([]);
-    expect(words(undefined)).toEqual([]);
-  });
+  test('handles null or undefined input gracefully', () => {
+    expect(() => words(null)).toThrow(TypeError);
+    expect(() => words(undefined)).toThrow(TypeError);
+});
 
-  test('handles non-string input', () => {
-    expect(words(12345)).toEqual(['12345']);
-    expect(words(true)).toEqual(['true']);
-    expect(words({})).toEqual(['[object', 'Object]']);
-  });
+test('throws error for non-string input', () => {
+    expect(() => words(12345)).toThrow(TypeError); 
+    expect(() => words(true)).toThrow(TypeError); 
+    expect(() => words({})).toThrow(TypeError); 
+    expect(() => words([])).toThrow(TypeError); 
+});
 
   test('splits words with symbols if matched by a pattern', () => {
     expect(words('fred, barney, & pebbles', /\w+/g)).toEqual(['fred', 'barney', 'pebbles']);
