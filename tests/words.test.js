@@ -32,16 +32,24 @@ describe('words', () => {
     expect(words('hello 世界')).toEqual(['hello', '世界']);
   });
 
-  test('handles null or undefined input gracefully', () => {
+test('throws error for non-string input', () => {
     expect(() => words(null)).toThrow(TypeError);
     expect(() => words(undefined)).toThrow(TypeError);
-});
-
-test('throws error for non-string input', () => {
     expect(() => words(12345)).toThrow(TypeError); 
     expect(() => words(true)).toThrow(TypeError); 
     expect(() => words({})).toThrow(TypeError); 
     expect(() => words([])).toThrow(TypeError); 
+});
+
+test('should throw a custom error before match is called', () => {
+  // Mocking the match function to confirm the error doesn't come from match
+  const invalidInput = {
+    match: jest.fn(() => {
+      throw new Error('This should not happen');
+    }),
+  };
+
+  expect(() => words(invalidInput)).toThrow(TypeError);
 });
 
   test('splits words with symbols if matched by a pattern', () => {

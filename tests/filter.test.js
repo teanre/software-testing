@@ -42,10 +42,10 @@ describe('filter', () => {
     expect(mockPredicate).toHaveBeenCalledWith(30, 2, array);
   });
 
-  test('handles non-array inputs gracefully', () => {
-    expect(filter(12345, (n) => n > 0)).toEqual([]);
-    expect(filter('hello', (char) => char === 'h')).toEqual([]);
-    expect(filter(true, (n) => n)).toEqual([]);
+  test('throws an error for non-array inputs', () => {
+    expect(() => filter(12345, (n) => n > 0)).toThrow(TypeError);
+    expect(() => filter('hello', (char) => char === 'h')).toThrow(TypeError);
+    expect(() => filter(true, (n) => n)).toThrow(TypeError);
   });
 
   test('filters elements in an array of mixed types', () => {
